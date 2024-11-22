@@ -19,6 +19,8 @@ Además, incluye el comando "apagar" para indicar la finalización del riego de 
 - **TensorFlow Lite**: Para la cuantización y despliegue del modelo en dispositivos embebidos.
 - **AppInventor**: Plataforma utilizada para la elaboración de la aplicación para las notificaciones.
 
+> :memo: **Nota 2:** El proyecto inicialmente se deseaba para que según la clasificación del audio, activara una serie de servomotores para cada cultivo, por lo cual el documento MINIPROYECTO 2.pdf detalla información dirigida a este objetivo , pero para esta idea de los servos se puede realizar la implementación del mismo código para subir al arduino nano 33 BLE sense (Archivo llamado Código-librería-despliegueArduinoNano.ino), pero ahora se le debe conecar un modulo HC-05 a los pines **Rx** y **Tx** del arduino nano 33 para que este funcione como maestro, y se debe usar un arduino uno para mover los servomotores (ya que la idea es la comunicación inalambrica entre los dispositivos embebidos), además se le deben conectar los servomotres al arduino uno para la señal de control (Debido a que por potencia el arduino uno no puede suministrarle la corriente necesaria a los servos, por lo cual se necesita una alimentación externa y se debe tener tierra común con el arduino uno), por otra parte, al arduino uno se le debe conectar un módulo bluetooth HC-06 o HC-05 para que funcione como esclavo que también debe ir conectado por los pines **Rx** y **Tx**. Por último, a este arduino uno se le sube el código del archivo llamado Codigo_miniproyecto_2_para_ArduinoUNO.ino para el control de los servos con el resultado de la clasificación.
+
 ---
 
 ## 🎯 Objetivos
