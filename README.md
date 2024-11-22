@@ -65,33 +65,19 @@ Desarrollar un sistema inteligente de riego basado en **TinyML** para identifica
 - Se replicó el modelo en **Colab**, con importación de datos tomados con el arduino nano 33 para el entrenamiento y la validación, preprocesamiento y entrenamiento.  
 - Se intentó el despliegue desde **Colab**, pero no se logró implementar completamente.
 
-> :memo: **Note:** El despliegue de la red se deseaba realizar con el código elaborado en colab (Es el archivo llamado Miniproyecto2_Embebidos.ipynb de este repositorio), en este cuaderno de colab las últimas líneas de código descargan el modelo convertido a tensorflow lite (Es el archivo llamado miniproyecto_model.tflite), sin embargo para subir el archivo al arduino Nano 33, se debía realizar con el IDE de arduino, y para esto este archivo de tflite se debe pasar a un archivo de C para usar en el IDE de arduino, por lo cual se usó la aplicación de gitbash para hacer la conversión para crear el archivo llamado model.h de este repositorio para usar este en un sketch con el que se hará la deteccion y clasificación del audio. Sin embargo, se optó por usar la herramienta de edge impulse en el apartado de despliegue con lo cual se descargará la red como una librería de arduino y descargará un archivo .zip (Archivo de este repositorio llamado Librería de edge impulse.zip) que se debe añadir a la librerías del IDE de arduino y posterior a esto en el apartado de ejemplos de arduino, se encontrará un ejemplo de microfono para el arduino nano 33 BLE sense, con este código se realiza el despliegue.
+> :memo: **Nota:** El despliegue de la red se deseaba realizar con el código elaborado en colab (Es el archivo llamado Miniproyecto2_Embebidos.ipynb de este repositorio), en este cuaderno de colab las últimas líneas de código descargan el modelo convertido a tensorflow lite (Es el archivo llamado miniproyecto_model.tflite), sin embargo para subir el archivo al arduino Nano 33, se debía realizar con el IDE de arduino, y para esto este archivo de tflite se debe pasar a un archivo de C para usar en el IDE de arduino, por lo cual se usó la aplicación de gitbash para hacer la conversión para crear el archivo llamado model.h de este repositorio para usar este en un sketch con el que se hará la deteccion y clasificación del audio. Sin embargo, se optó por usar la herramienta de edge impulse en el apartado de despliegue con lo cual se descargará la red como una librería de arduino y descargará un archivo .zip (Archivo de este repositorio llamado Librería de edge impulse.zip) que se debe añadir a la librerías del IDE de arduino y posterior a esto en el apartado de ejemplos de arduino, se encontrará un ejemplo de microfono para el arduino nano 33 BLE sense, este codigo fue utilizado como base para el archivo llamado "Código-librería-despliegueArduinoNano.ino" que es el codigo que se debe subir al arduino nano 33 para poder usar la red y clasificar los audios.
+
+> :memo: **Nota 2:** El proyecto inicialmente se deseaba para que según la clasificación del audio, activara una serie de servomotores para cada cultivo, por lo cual se puede realizar la implementación del mismo código para subir al arduino nano 33 BLE sense, pero ahora se le debe conecar un modulo HC-05 a los pines **Rx** y **Tx** del arduino nano 33 para que este funcione como maestro, y se debe usar un arduino uno para mover los servomotores (ya que la idea es la comunicación inalambrica entre los dispositivos embebidos), por lo cual se le deben conectar los servomotres al arduino uno para la señal de control (Debido a que por potencia el arduino uno no puede suministrarle la corriente necesaria a los servos, por lo cual se necesita una alimentación externa y se debe tener tierra común con el arduino uno), por otra parte, al arduino uno se le debe conectar un módulo bluetooth HC-06 o HC-05 para que funcione como esclavo que también debe ir conectado por los pines **Rx** y **Tx**. Por último, a este arduino uno se le sube el código del archivo llamado Codigo_miniproyecto_2_para_ArduinoUNO.ino para el control de los servos con el resultado de la clasificación.
 ---
 
-## 🛠️ Resultados y Mejoras Futuras
+## 🛠️ Resultados 
 
 ### Resultados:
 - Modelo entrenado con buena precisión.  
-- Sistema funcional para la activación/desactivación de motores basada en comandos de voz.  
-
-### Mejoras Futuras:
-1. **Optimización del preprocesamiento de audio** para mejorar la calidad del reconocimiento.  
-2. **Ampliación del dataset** para incluir más clases y aumentar la robustez frente a diferentes acentos.  
-3. **Integración de sensores adicionales** (humedad, temperatura) para un riego más eficiente.  
-4. Desarrollo de una **Interfaz Gráfica de Usuario (GUI)** para facilitar el monitoreo remoto.  
+- Sistema funcional para la activación/desactivación de alarmas en la aplicación basada en comandos de voz.  
 
 ---
 
-## 🌍 Alineación con los Objetivos de Desarrollo Sostenible (ODS)
-- **ODS 6: Agua limpia y saneamiento**: Uso eficiente del agua en el riego.  
-- **ODS 12: Producción y consumo responsables**: Optimización de recursos en prácticas agrícolas.  
+🎉 **Gracias por explorar este proyecto!**  
 
----
 
-## 📜 Referencias
-- [Arduino Nano 33 BLE Sense](https://store.arduino.cc/nano-33-ble-sense)  
-- [Edge Impulse Docs](https://docs.edgeimpulse.com/docs/tutorials/arduino-nano-33-ble-sense)  
-
----
-
-## 📂 Estructura del Proyecto
