@@ -38,7 +38,7 @@ Desarrollar un sistema inteligente de riego basado en **TinyML** para identifica
 ## 🔧 Metodología
 
 ### Componentes del sistema:
-1. **Arduino Nano 33 BLE Sense**: Captura y procesa comandos de voz con ayuda del micrófono integrado.  
+1. **Arduino Nano 33 BLE Sense**: Captura y procesa comandos de voz con ayuda del micrófono integrado (**Los datos capturados en el edge impulse se encuentran en el archivo Dataset.zip**).  
 2. **Micrófono integrado**: Registra los comandos de audio en tiempo real.    
 3. **Edge Impulse**: Plataforma utilizada para entrenar el modelo de clasificación.  
 4. **Bluetooth**: Permite la comunicación y el control remoto.
@@ -49,7 +49,7 @@ Desarrollar un sistema inteligente de riego basado en **TinyML** para identifica
 ## 🚀 Implementación
 
 ### **Fase 1: Entrenamiento del Modelo en Edge Impulse**
-- Conjunto de datos: 625 muestras para entrenamiento y 158 para prueba, distribuidas en cinco clases.  
+- Conjunto de datos: 625 muestras para entrenamiento y 158 para prueba, distribuidas en cinco clases (**Los datos capturados se encuentran en el archivo llamado Dataset.zip**).  
 - Arquitectura: Red neuronal convolucional (CNN) con 3 capas y filtros de tamaño 12, 24 y 36.  
 - Optimización: Se aplicó **data augmentation** para añadir ruido y mejorar la robustez del modelo.  
 
@@ -65,6 +65,7 @@ Desarrollar un sistema inteligente de riego basado en **TinyML** para identifica
 - Se replicó el modelo en **Colab**, con importación de datos tomados con el arduino nano 33 para el entrenamiento y la validación, preprocesamiento y entrenamiento.  
 - Se intentó el despliegue desde **Colab**, pero no se logró implementar completamente.
 
+> :memo: **Note:** El despliegue de la red se deseaba realizar con el código elaborado en colab (Es el archivo llamado Miniproyecto2_Embebidos.ipynb de este repositorio), en este cuaderno de colab las últimas líneas de código descargan el modelo convertido a tensorflow lite (Es el archivo llamado miniproyecto_model.tflite), sin embargo para subir el archivo al arduino Nano 33, se debía realizar con el IDE de arduino, y para esto este archivo de tflite se debe pasar a un archivo de C para usar en el IDE de arduino, por lo cual se usó la aplicación de gitbash para hacer la conversión para crear el archivo llamado model.h de este repositorio para usar este en un sketch con el que se hará la deteccion y clasificación del audio. Sin embargo, se optó por usar la herramienta de edge impulse en el apartado de despliegue con lo cual se descargará la red como una librería de arduino y descargará un archivo .zip (Archivo de este repositorio llamado Librería de edge impulse.zip) que se debe añadir a la librerías del IDE de arduino y posterior a esto en el apartado de ejemplos de arduino, se encontrará un ejemplo de microfono para el arduino nano 33 BLE sense, con este código se realiza el despliegue.
 ---
 
 ## 🛠️ Resultados y Mejoras Futuras
